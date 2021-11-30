@@ -36,10 +36,6 @@ eclipse {
  targetCompatibility=8
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'direct.App'
-}
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.

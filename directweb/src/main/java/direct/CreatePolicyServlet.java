@@ -28,6 +28,7 @@ public class CreatePolicyServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String product = request.getParameter("products");
+		//do something with the fields
 		doGet(request, response);
 	}
 
