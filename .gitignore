@@ -3,8 +3,8 @@
 
 # Ignore Gradle build output directory
 build
-app/.classpath
-app/.project
-app/.settings/
-app/bin/
+directweb/.classpath
+directweb/.project
+directweb/.settings/
+directweb/bin/
 
