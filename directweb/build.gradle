@@ -30,6 +30,11 @@ dependencies {
     implementation 'com.google.guava:guava:30.1-jre'
 }
 
+eclipse {
+ sourceCompatibility=8
+ targetCompatibility=8
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'direct.App'
