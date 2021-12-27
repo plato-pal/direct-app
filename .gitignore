@@ -8,3 +8,6 @@ directweb/.project
 directweb/.settings/
 directweb/bin/
 
+# Other ignores
+collaborators.txt.bak
+.gitignore.bak
