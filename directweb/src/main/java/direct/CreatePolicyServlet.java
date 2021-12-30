@@ -2,6 +2,7 @@ package direct;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,11 @@ public class CreatePolicyServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String product = request.getParameter("products");
 		IssuePolicyResponse issuePolicyResponse = issuePolicyServiceImplProxy.issuePolicy(new IssuePolicyRequest(email, name, product));
-		response.getWriter().append(String.format("Congratulations: Policy with number %s was awarded for $%s!", issuePolicyResponse.getPolicyNumber(), issuePolicyResponse.getPolicyCost()));
+		RequestDispatcher rd=request.getRequestDispatcher("/success.jsp");  
+		request.setAttribute("policyNum", issuePolicyResponse.getPolicyNumber());
+		request.setAttribute("policyCost", issuePolicyResponse.getPolicyCost());
+		rd.forward(request, response);
+		//response.getWriter().append(String.format("Congratulations: Policy with number %s was awarded for $%s!", issuePolicyResponse.getPolicyNumber(), issuePolicyResponse.getPolicyCost()));
 	}
 
 }
