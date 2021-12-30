@@ -12,7 +12,7 @@ public class IssuePolicyRequest  implements java.io.Serializable {
 
     private java.lang.String name;
 
-    private int product;
+    private java.lang.String product;
 
     public IssuePolicyRequest() {
     }
@@ -20,7 +20,7 @@ public class IssuePolicyRequest  implements java.io.Serializable {
     public IssuePolicyRequest(
            java.lang.String email,
            java.lang.String name,
-           int product) {
+           java.lang.String product) {
            this.email = email;
            this.name = name;
            this.product = product;
@@ -72,7 +72,7 @@ public class IssuePolicyRequest  implements java.io.Serializable {
      * 
      * @return product
      */
-    public int getProduct() {
+    public java.lang.String getProduct() {
         return product;
     }
 
@@ -82,7 +82,7 @@ public class IssuePolicyRequest  implements java.io.Serializable {
      * 
      * @param product
      */
-    public void setProduct(int product) {
+    public void setProduct(java.lang.String product) {
         this.product = product;
     }
 
@@ -104,7 +104,9 @@ public class IssuePolicyRequest  implements java.io.Serializable {
             ((this.name==null && other.getName()==null) || 
              (this.name!=null &&
               this.name.equals(other.getName()))) &&
-            this.product == other.getProduct();
+            ((this.product==null && other.getProduct()==null) || 
+             (this.product!=null &&
+              this.product.equals(other.getProduct())));
         __equalsCalc = null;
         return _equals;
     }
@@ -122,7 +124,9 @@ public class IssuePolicyRequest  implements java.io.Serializable {
         if (getName() != null) {
             _hashCode += getName().hashCode();
         }
-        _hashCode += getProduct();
+        if (getProduct() != null) {
+            _hashCode += getProduct().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -137,18 +141,18 @@ public class IssuePolicyRequest  implements java.io.Serializable {
         elemField.setFieldName("email");
         elemField.setXmlName(new javax.xml.namespace.QName("http://insurance.bo", "email"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(true);
+        elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("name");
         elemField.setXmlName(new javax.xml.namespace.QName("http://insurance.bo", "name"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(true);
+        elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("product");
         elemField.setXmlName(new javax.xml.namespace.QName("http://insurance.bo", "product"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }

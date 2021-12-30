@@ -7,11 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bo.insurance.IssuePolicyRequest;
+import bo.insurance.IssuePolicyResponse;
+import bo.insurance.IssuePolicyServiceImplProxy;
+
 /**
  * Servlet implementation class CreatePolicyServlet
  */
 public class CreatePolicyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	IssuePolicyServiceImplProxy issuePolicyServiceImplProxy = new IssuePolicyServiceImplProxy();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,8 +33,8 @@ public class CreatePolicyServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String product = request.getParameter("products");
-		//do something with the fields
-		doGet(request, response);
+		IssuePolicyResponse issuePolicyResponse = issuePolicyServiceImplProxy.issuePolicy(new IssuePolicyRequest(email, name, product));
+		response.getWriter().append(String.format("Congratulations: Policy with number %s was awarded for $%s!", issuePolicyResponse.getPolicyNumber(), issuePolicyResponse.getPolicyCost()));
 	}
 
 }

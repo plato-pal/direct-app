@@ -10,14 +10,14 @@ package bo.insurance;
 public class IssuePolicyResponse  implements java.io.Serializable {
     private java.math.BigDecimal policyCost;
 
-    private int policyNumber;
+    private java.lang.String policyNumber;
 
     public IssuePolicyResponse() {
     }
 
     public IssuePolicyResponse(
            java.math.BigDecimal policyCost,
-           int policyNumber) {
+           java.lang.String policyNumber) {
            this.policyCost = policyCost;
            this.policyNumber = policyNumber;
     }
@@ -48,7 +48,7 @@ public class IssuePolicyResponse  implements java.io.Serializable {
      * 
      * @return policyNumber
      */
-    public int getPolicyNumber() {
+    public java.lang.String getPolicyNumber() {
         return policyNumber;
     }
 
@@ -58,7 +58,7 @@ public class IssuePolicyResponse  implements java.io.Serializable {
      * 
      * @param policyNumber
      */
-    public void setPolicyNumber(int policyNumber) {
+    public void setPolicyNumber(java.lang.String policyNumber) {
         this.policyNumber = policyNumber;
     }
 
@@ -77,7 +77,9 @@ public class IssuePolicyResponse  implements java.io.Serializable {
             ((this.policyCost==null && other.getPolicyCost()==null) || 
              (this.policyCost!=null &&
               this.policyCost.equals(other.getPolicyCost()))) &&
-            this.policyNumber == other.getPolicyNumber();
+            ((this.policyNumber==null && other.getPolicyNumber()==null) || 
+             (this.policyNumber!=null &&
+              this.policyNumber.equals(other.getPolicyNumber())));
         __equalsCalc = null;
         return _equals;
     }
@@ -92,7 +94,9 @@ public class IssuePolicyResponse  implements java.io.Serializable {
         if (getPolicyCost() != null) {
             _hashCode += getPolicyCost().hashCode();
         }
-        _hashCode += getPolicyNumber();
+        if (getPolicyNumber() != null) {
+            _hashCode += getPolicyNumber().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -112,7 +116,7 @@ public class IssuePolicyResponse  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("policyNumber");
         elemField.setXmlName(new javax.xml.namespace.QName("http://insurance.bo", "policyNumber"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
     }
