@@ -31,15 +31,25 @@ public class CreatePolicyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String product = request.getParameter("products");
-		IssuePolicyResponse issuePolicyResponse = issuePolicyServiceImplProxy.issuePolicy(new IssuePolicyRequest(email, name, product));
-		RequestDispatcher rd=request.getRequestDispatcher("/success.jsp");  
-		request.setAttribute("policyNum", issuePolicyResponse.getPolicyNumber());
-		request.setAttribute("policyCost", issuePolicyResponse.getPolicyCost());
-		rd.forward(request, response);
-		//response.getWriter().append(String.format("Congratulations: Policy with number %s was awarded for $%s!", issuePolicyResponse.getPolicyNumber(), issuePolicyResponse.getPolicyCost()));
+		try {
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String product = request.getParameter("products");
+		
+			IssuePolicyResponse issuePolicyResponse = issuePolicyServiceImplProxy.issuePolicy(new IssuePolicyRequest(email, name, product));
+			if (issuePolicyResponse!=null && issuePolicyResponse.getPolicyNumber()!=null && issuePolicyResponse.getPolicyCost()!=null) {
+				request.setAttribute("policyNum", issuePolicyResponse.getPolicyNumber());
+				request.setAttribute("policyCost", issuePolicyResponse.getPolicyCost());
+				request.getRequestDispatcher("success.jsp").forward(request, response);
+			}else {
+				request.setAttribute("errors", "Something went wrong! Please try again.");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+			
+		} catch (Exception e) {
+			request.setAttribute("errors", e.getMessage());
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 	}
 
 }
